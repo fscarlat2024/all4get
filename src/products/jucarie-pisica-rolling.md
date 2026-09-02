@@ -7,7 +7,7 @@ oldPrice: 89.99
 stock: 50
 order: 0
 short: Minge inteligenta care se rostogoleste si se roteste singura, tine pisica activa si ocupata. Reincarcabila USB-C.
-image: /assets/img/products/jucarie-pisica-rolling.jpg
+image: /assets/img/products/pisica-ball-hero.jpg
 brand: PetGravity
 gallery:
   - /assets/img/products/pisica-ball-colors.jpg
