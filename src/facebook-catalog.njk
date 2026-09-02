@@ -1,0 +1,35 @@
+---
+permalink: /facebook-catalog.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+<channel>
+<title>{{ site.name }} - Catalog produse</title>
+<link>{{ site.url }}</link>
+<description>{{ site.description }}</description>
+{%- for p in collections.products %}
+<item>
+<g:id>{{ p.data.sku }}</g:id>
+<g:title>{{ p.data.name | escape }}</g:title>
+<g:description>{{ p.data.short | escape }}</g:description>
+<g:link>{{ site.url }}{{ p.url }}</g:link>
+<g:image_link>{{ site.url }}{{ p.data.image }}</g:image_link>
+{%- if p.data.gallery %}{% for gimg in p.data.gallery %}
+<g:additional_image_link>{{ site.url }}{{ gimg }}</g:additional_image_link>
+{%- endfor %}{% endif %}
+<g:availability>{% if p.data.stock > 0 %}in stock{% else %}out of stock{% endif %}</g:availability>
+<g:condition>new</g:condition>
+{%- if p.data.oldPrice %}
+<g:price>{{ p.data.oldPrice }} {{ site.currency }}</g:price>
+<g:sale_price>{{ p.data.price }} {{ site.currency }}</g:sale_price>
+{%- else %}
+<g:price>{{ p.data.price }} {{ site.currency }}</g:price>
+{%- endif %}
+<g:brand>{{ p.data.brand or site.name }}</g:brand>
+<g:product_type>{{ p.data.category | escape }}</g:product_type>
+<g:identifier_exists>no</g:identifier_exists>
+</item>
+{%- endfor %}
+</channel>
+</rss>
