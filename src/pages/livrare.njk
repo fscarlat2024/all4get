@@ -1,0 +1,31 @@
+---
+layout: base.njk
+title: Livrare si plata
+permalink: /livrare/
+description: Informatii despre livrare, costuri de transport si metode de plata acceptate.
+---
+<section class="wrap prose">
+  <h1>Livrare si plata</h1>
+
+  <h2>Livrare</h2>
+  <ul>
+    <li><strong>Timp de livrare:</strong> {{ site.shipping.deliveryTime }} de la confirmarea comenzii.</li>
+    <li><strong>Curier:</strong> {{ site.shipping.courier }}.</li>
+    <li><strong>Cost transport:</strong> {{ site.shipping.flatRate | lei }} pentru comenzi sub {{ site.shipping.freeThreshold | lei }}.</li>
+    <li><strong>Transport GRATUIT</strong> pentru comenzi de peste {{ site.shipping.freeThreshold | lei }}.</li>
+    <li>Comenzile plasate pana la ora 14:00 in zilele lucratoare se expediaza in aceeasi zi.</li>
+  </ul>
+
+  <h2>Metode de plata</h2>
+  <ul>
+    <li><strong>Card online</strong> - securizat, procesat prin Snipcart / procesatorul de plati. Nu stocam datele cardului tau.</li>
+    <li><strong>Ramburs la curier</strong> - platesti in numerar sau cu cardul la livrare (in functie de curier).</li>
+    <li><strong>Transfer bancar</strong> - pentru persoane juridice, in contul {{ site.company.iban }} ({{ site.company.bank }}).</li>
+  </ul>
+
+  <h2>Confirmarea comenzii</h2>
+  <p>Dupa plasarea comenzii primesti un email de confirmare cu detaliile si numarul comenzii. Cand coletul este predat curierului, primesti numarul AWB pentru urmarire.</p>
+
+  <h2>Facturare</h2>
+  <p>Pentru fiecare comanda emitem factura fiscala. Daca ai nevoie de factura pe firma, completeaza datele companiei la finalizarea comenzii.</p>
+</section>

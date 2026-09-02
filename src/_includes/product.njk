@@ -1,0 +1,77 @@
+---
+layout: base.njk
+---
+<article class="wrap product-page">
+  <nav class="crumbs" aria-label="Cale">
+    <a href="/">Acasa</a> ›
+    <a href="/magazin/">Magazin</a> ›
+    <a href="/categorie/{{ product.category | slug }}/">{{ product.category }}</a> ›
+    <span>{{ product.name }}</span>
+  </nav>
+
+  <div class="product-grid">
+    <div class="product-media">
+      {% if product.image %}
+      <img src="{{ product.image }}" alt="{{ product.name }}" width="800" height="800" loading="eager">
+      {% else %}
+      <div class="ph-img" aria-hidden="true">Fara imagine</div>
+      {% endif %}
+      {% if product.gallery %}
+      <div class="thumbs">
+        {% for g in product.gallery %}
+        <img src="{{ g }}" alt="{{ product.name }}" width="160" height="160" loading="lazy">
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="product-info">
+      <p class="eyebrow">{{ product.category }}</p>
+      <h1>{{ product.name }}</h1>
+      <p class="lede">{{ product.short }}</p>
+
+      <div class="price-row">
+        <span class="price">{{ product.price | lei }}</span>
+        {% if product.oldPrice %}<span class="price-old">{{ product.oldPrice | lei }}</span>{% endif %}
+      </div>
+
+      <p class="stock {% if product.stock > 0 %}in{% else %}out{% endif %}">
+        {% if product.stock > 0 %}✔ In stoc ({{ product.stock }} buc.){% else %}✖ Stoc epuizat{% endif %}
+      </p>
+
+      <button
+        class="btn btn-buy snipcart-add-item"
+        {% if product.stock <= 0 %}disabled{% endif %}
+        data-item-id="{{ product.sku }}"
+        data-item-price="{{ product.price }}"
+        data-item-url="{{ page.url }}"
+        data-item-name="{{ product.name }}"
+        data-item-description="{{ product.short }}"
+        data-item-image="{{ product.image }}"
+        data-item-max-quantity="{{ product.stock }}"
+        data-item-categories="{{ product.category }}">
+        Adauga in cos
+      </button>
+
+      <ul class="perks">
+        <li>Livrare {{ site.shipping.deliveryTime }}</li>
+        <li>Retur gratuit in 14 zile</li>
+        <li>Transport gratuit peste {{ site.shipping.freeThreshold | lei }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="product-desc">
+    <h2>Descriere</h2>
+    {{ content | safe }}
+
+    {% if product.specs %}
+    <h2>Specificatii</h2>
+    <table class="specs">
+      {% for row in product.specs %}
+      <tr><th>{{ row.k }}</th><td>{{ row.v }}</td></tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  </section>
+</article>

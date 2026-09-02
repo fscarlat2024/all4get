@@ -1,0 +1,43 @@
+---
+layout: base.njk
+---
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow">Stoc in Romania · Livrare 24-48h</p>
+      <h1>{{ site.tagline }}</h1>
+      <p class="lede">Gadgeturi si accesorii verificate, la preturi corecte. Comanzi azi, ajunge maine. Retur simplu in 14 zile.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="/magazin/">Vezi produsele</a>
+        <a class="btn btn-ghost" href="/livrare/">Livrare si plata</a>
+      </div>
+    </div>
+    <div class="hero-badges">
+      <div class="badge"><span>🚚</span> Transport gratuit peste {{ site.shipping.freeThreshold | lei }}</div>
+      <div class="badge"><span>↩</span> Retur in 14 zile</div>
+      <div class="badge"><span>🛡</span> Garantie si suport RO</div>
+      <div class="badge"><span>💳</span> Card, ramburs sau transfer</div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <h2>Produse populare</h2>
+    <a class="link" href="/magazin/">Toate produsele →</a>
+  </div>
+  <div class="product-cards">
+    {% for p in collections.products %}
+    {% include "card.njk" %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="wrap cats-strip">
+  <h2>Categorii</h2>
+  <div class="cat-chips">
+    {% for cat in collections.categories %}
+    <a class="chip" href="/categorie/{{ cat | slug }}/">{{ cat }}</a>
+    {% endfor %}
+  </div>
+</section>

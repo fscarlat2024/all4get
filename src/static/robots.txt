@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://all4get.ro/sitemap.xml

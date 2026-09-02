@@ -1,0 +1,24 @@
+---
+layout: base.njk
+title: Magazin
+permalink: /magazin/
+description: Toate produsele din magazin - gadgeturi, accesorii si produse smart, in stoc, cu livrare rapida in Romania.
+---
+<section class="wrap page-head">
+  <h1>Magazin</h1>
+  <p class="lede">{{ collections.products.length }} produse in stoc · livrare 24-48h</p>
+  <div class="cat-chips">
+    <a class="chip active" href="/magazin/">Toate</a>
+    {% for cat in collections.categories %}
+    <a class="chip" href="/categorie/{{ cat | slug }}/">{{ cat }}</a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="product-cards">
+    {% for p in collections.products %}
+    {% include "card.njk" %}
+    {% endfor %}
+  </div>
+</section>

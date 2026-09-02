@@ -1,0 +1,31 @@
+---
+layout: base.njk
+pagination:
+  data: collections.categories
+  size: 1
+  alias: cat
+permalink: "/categorie/{{ cat | slug }}/"
+eleventyComputed:
+  title: "{{ cat }}"
+  description: "Produse din categoria {{ cat }} - in stoc, livrare rapida in Romania."
+---
+<section class="wrap page-head">
+  <nav class="crumbs"><a href="/">Acasa</a> › <a href="/magazin/">Magazin</a> › <span>{{ cat }}</span></nav>
+  <h1>{{ cat }}</h1>
+  <div class="cat-chips">
+    <a class="chip" href="/magazin/">Toate</a>
+    {% for c in collections.categories %}
+    <a class="chip {% if c == cat %}active{% endif %}" href="/categorie/{{ c | slug }}/">{{ c }}</a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="product-cards">
+    {% for p in collections.products %}
+    {% if p.data.category == cat %}
+    {% include "card.njk" %}
+    {% endif %}
+    {% endfor %}
+  </div>
+</section>

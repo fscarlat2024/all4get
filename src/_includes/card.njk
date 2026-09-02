@@ -1,0 +1,27 @@
+<article class="card-prod">
+  <a class="card-media" href="{{ p.url }}">
+    {% if p.data.oldPrice %}<span class="tag-sale">Reducere</span>{% endif %}
+    <img src="{{ p.data.image }}" alt="{{ p.data.name }}" width="400" height="400" loading="lazy">
+  </a>
+  <div class="card-body">
+    <p class="card-cat">{{ p.data.category }}</p>
+    <h3 class="card-title"><a href="{{ p.url }}">{{ p.data.name }}</a></h3>
+    <div class="price-row">
+      <span class="price">{{ p.data.price | lei }}</span>
+      {% if p.data.oldPrice %}<span class="price-old">{{ p.data.oldPrice | lei }}</span>{% endif %}
+    </div>
+    <button
+      class="btn btn-buy-sm snipcart-add-item"
+      {% if p.data.stock <= 0 %}disabled{% endif %}
+      data-item-id="{{ p.data.sku }}"
+      data-item-price="{{ p.data.price }}"
+      data-item-url="{{ p.url }}"
+      data-item-name="{{ p.data.name }}"
+      data-item-description="{{ p.data.short }}"
+      data-item-image="{{ p.data.image }}"
+      data-item-max-quantity="{{ p.data.stock }}"
+      data-item-categories="{{ p.data.category }}">
+      {% if p.data.stock > 0 %}Adauga in cos{% else %}Stoc epuizat{% endif %}
+    </button>
+  </div>
+</article>

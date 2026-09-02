@@ -1,0 +1,17 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- set staticUrls = ["/", "/magazin/", "/despre/", "/contact/", "/livrare/", "/retur/", "/termeni/", "/confidentialitate/", "/cookies/"] %}
+{%- for u in staticUrls %}
+  <url><loc>{{ site.url }}{{ u }}</loc></url>
+{%- endfor %}
+{%- for cat in collections.categories %}
+  <url><loc>{{ site.url }}/categorie/{{ cat | slug }}/</loc></url>
+{%- endfor %}
+{%- for p in collections.products %}
+  <url><loc>{{ site.url }}{{ p.url }}</loc></url>
+{%- endfor %}
+</urlset>

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% if title %}{{ title }} · {{ site.name }}{% else %}{{ site.name }} · {{ site.tagline }}{% endif %}</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="{% if product %}product{% else %}website{% endif %}">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  {% if ogImage %}<meta property="og:image" content="{{ site.url }}{{ ogImage }}">{% endif %}
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://app.snipcart.com">
+  <link rel="preconnect" href="https://cdn.snipcart.com">
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v{{ site.snipcartVersion }}/default/snipcart.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap">
+
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+  {% if product %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": "{{ product.name }}",
+    "image": "{{ site.url }}{{ product.image }}",
+    "description": "{{ product.short }}",
+    "sku": "{{ product.sku }}",
+    "brand": { "@type": "Brand", "name": "{{ product.brand or site.name }}" },
+    "offers": {
+      "@type": "Offer",
+      "url": "{{ site.url }}{{ page.url }}",
+      "priceCurrency": "{{ site.currency }}",
+      "price": "{{ product.price }}",
+      "availability": "{% if product.stock > 0 %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}"
+    }
+  }
+  </script>
+  {% else %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "OnlineStore",
+    "name": "{{ site.name }}",
+    "url": "{{ site.url }}",
+    "description": "{{ site.description }}"
+  }
+  </script>
+  {% endif %}
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap head-row">
+      <a class="brand" href="/">
+        <span class="brand-mark">◈</span>
+        <span class="brand-name">{{ site.name }}</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navigare principala">
+        <a href="/magazin/">Magazin</a>
+        {% for cat in collections.categories %}
+        <a href="/categorie/{{ cat | slug }}/">{{ cat }}</a>
+        {% endfor %}
+        <a href="/despre/">Despre</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+
+      <div class="head-actions">
+        <button class="theme-toggle" type="button" aria-label="Schimba tema">☾</button>
+        <a href="#" class="snipcart-checkout cart-btn" aria-label="Cos de cumparaturi">
+          <span class="cart-ico">🛒</span>
+          <span class="snipcart-items-count cart-count">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap foot-grid">
+      <div>
+        <div class="brand foot-brand"><span class="brand-mark">◈</span> {{ site.name }}</div>
+        <p class="muted">{{ site.tagline }}</p>
+        <p class="muted small">{{ site.company.legalName }} · CUI {{ site.company.cui }} · {{ site.company.reg }}</p>
+      </div>
+      <div>
+        <h4>Magazin</h4>
+        <a href="/magazin/">Toate produsele</a>
+        {% for cat in collections.categories %}
+        <a href="/categorie/{{ cat | slug }}/">{{ cat }}</a>
+        {% endfor %}
+      </div>
+      <div>
+        <h4>Informatii</h4>
+        <a href="/livrare/">Livrare si plata</a>
+        <a href="/retur/">Politica de retur</a>
+        <a href="/termeni/">Termeni si conditii</a>
+        <a href="/confidentialitate/">Confidentialitate (GDPR)</a>
+        <a href="/cookies/">Politica cookies</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+        <a href="tel:{{ site.phoneHref }}">{{ site.phone }}</a>
+        <p class="muted small">{{ site.company.address }}</p>
+        <div class="anpc">
+          <a href="https://anpc.ro/ce-este-sal/" target="_blank" rel="noopener">ANPC - SAL</a>
+          <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">SOL - UE</a>
+        </div>
+      </div>
+    </div>
+    <div class="wrap foot-bottom">
+      <span class="muted small">© 2026 {{ site.company.legalName }}. Toate drepturile rezervate.</span>
+    </div>
+  </footer>
+
+  <!-- Snipcart -->
+  <div hidden id="snipcart" data-api-key="{{ site.snipcartApiKey }}" data-currency="{{ site.currency }}"></div>
+  <script async src="https://cdn.snipcart.com/themes/v{{ site.snipcartVersion }}/default/snipcart.js"></script>
+  <script src="/assets/js/theme.js" defer></script>
+</body>
+</html>

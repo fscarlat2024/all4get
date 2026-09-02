@@ -1,0 +1,28 @@
+---
+layout: base.njk
+title: Despre noi
+permalink: /despre/
+description: Despre magazinul nostru - cine suntem, de ce sa cumperi de la noi.
+---
+<section class="wrap prose">
+  <h1>Despre {{ site.name }}</h1>
+  <p class="lede">Selectam si aducem in stoc gadgeturi si accesorii utile, testate, pe care le livram rapid din Romania - fara asteptari de saptamani si fara surprize la vama.</p>
+
+  <p>Spre deosebire de comenzile directe din strainatate, toate produsele noastre sunt <strong>pe stoc, in Romania</strong>. Asta inseamna livrare in 24-48h prin curier, factura fiscala si retur simplu daca nu esti multumit.</p>
+
+  <h2>De ce sa cumperi de la noi</h2>
+  <ul>
+    <li><strong>Stoc real, livrare rapida</strong> - expediem in aceeasi zi pentru comenzile plasate pana la ora 14:00.</li>
+    <li><strong>Preturi corecte</strong> - fara costuri ascunse, TVA inclus in pret.</li>
+    <li><strong>Retur in 14 zile</strong> - conform legislatiei, iti poti returna produsul fara sa justifici motivul.</li>
+    <li><strong>Suport in romana</strong> - ne scrii sau ne suni si primesti raspuns de la o persoana reala.</li>
+  </ul>
+
+  <h2>Datele firmei</h2>
+  <p>
+    {{ site.company.legalName }}<br>
+    CUI: {{ site.company.cui }} · Reg. Com.: {{ site.company.reg }}<br>
+    Sediu: {{ site.company.address }}<br>
+    Email: <a href="mailto:{{ site.email }}">{{ site.email }}</a> · Tel: <a href="tel:{{ site.phoneHref }}">{{ site.phone }}</a>
+  </p>
+</section>

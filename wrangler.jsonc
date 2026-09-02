@@ -1,0 +1,7 @@
+{
+  "name": "all4get",
+  "compatibility_date": "2026-01-01",
+  "assets": {
+    "directory": "./_site"
+  }
+}

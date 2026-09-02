@@ -1,0 +1,14 @@
+{
+  "name": "magazin-china",
+  "version": "1.0.0",
+  "description": "Magazin online static (Eleventy + Snipcart) - produse import, piata RO, RON",
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve --port=8083",
+    "deploy": "eleventy && npx wrangler deploy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "All4Get",
+  "tagline": "Gadgeturi si accesorii utile, livrate rapid din stoc",
+  "description": "Magazin online cu gadgeturi, accesorii si produse smart pentru casa si birou. Stoc in Romania, livrare prin curier in 24-48h, retur in 14 zile.",
+  "url": "https://all4get.ro",
+  "currency": "RON",
+  "currencySymbol": "lei",
+
+  "snipcartApiKey": "PUNE_AICI_CHEIA_PUBLICA_SNIPCART",
+  "snipcartVersion": "3.7.1",
+
+  "email": "comenzi@all4get.ro",
+  "phone": "0740 000 000",
+  "phoneHref": "+40740000000",
+
+  "company": {
+    "legalName": "All4Get SRL",
+    "cui": "RO00000000",
+    "reg": "J40/0000/2026",
+    "address": "Str. Exemplu nr. 1, Bucuresti, Romania",
+    "iban": "RO00 XXXX 0000 0000 0000 0000",
+    "bank": "Banca Exemplu"
+  },
+
+  "shipping": {
+    "freeThreshold": 300,
+    "flatRate": 19.99,
+    "courier": "Curier (FAN/Sameday/Cargus)",
+    "deliveryTime": "24-48 h in zilele lucratoare"
+  },
+
+  "social": {
+    "facebook": "",
+    "instagram": "",
+    "tiktok": ""
+  }
+}

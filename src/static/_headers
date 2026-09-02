@@ -1,0 +1,15 @@
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.snipcart.com https://app.snipcart.com; style-src 'self' 'unsafe-inline' https://cdn.snipcart.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdn.snipcart.com; img-src 'self' data: https:; connect-src 'self' https://app.snipcart.com https://payment.snipcart.com https://*.snipcart.com; frame-src https://app.snipcart.com https://*.snipcart.com https://js.stripe.com; form-action 'self' https://*.snipcart.com
+
+/assets/css/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/js/*
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/img/*
+  Cache-Control: public, max-age=31536000, immutable
