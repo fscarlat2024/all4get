@@ -12,6 +12,7 @@ brand: PetGravity
 gallery:
   - /assets/img/products/pisica-ball-colors.jpg
   - /assets/img/products/pisica-ball-life.jpg
+  - /assets/img/products/pisica-ball-life2.jpg
   - /assets/img/products/pisica-ball-play.jpg
   - /assets/img/products/pisica-ball-box.jpg
 specs:
