@@ -9,6 +9,7 @@ eleventyExcludeFromCollections: true
 <link>{{ site.url }}</link>
 <description>{{ site.description }}</description>
 {%- for p in collections.products %}
+{%- if ".svg" not in p.data.image %}
 <item>
 <g:id>{{ p.data.sku }}</g:id>
 <g:title>{{ p.data.name | escape }}</g:title>
@@ -30,6 +31,7 @@ eleventyExcludeFromCollections: true
 <g:product_type>{{ p.data.category | escape }}</g:product_type>
 <g:identifier_exists>no</g:identifier_exists>
 </item>
+{%- endif %}
 {%- endfor %}
 </channel>
 </rss>
