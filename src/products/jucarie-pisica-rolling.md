@@ -2,8 +2,8 @@
 name: Minge interactiva pentru pisici - Smart Rotating Ball 2.0
 sku: PET-CAT-001
 category: Animale de companie
-price: 59.99
-oldPrice: 89.99
+price: 39.99
+oldPrice: 69.99
 stock: 50
 order: 0
 short: Pisica ta merita mai mult decat o zi plictisitoare acasa. Mingea inteligenta care o tine fericita si activa cat esti plecat.
