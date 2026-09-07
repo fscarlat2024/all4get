@@ -6,7 +6,7 @@ price: 59.99
 oldPrice: 89.99
 stock: 50
 order: 0
-short: Minge inteligenta care se rostogoleste si se roteste singura, tine pisica activa si ocupata. Reincarcabila USB-C.
+short: Pisica ta merita mai mult decat o zi plictisitoare acasa. Mingea inteligenta care o tine fericita si activa cat esti plecat.
 image: /assets/img/products/pisica-ball-hero.jpg
 brand: PetGravity
 gallery:
@@ -19,10 +19,16 @@ specs:
   - { k: Model, v: PetGravity Smart Rotating Ball 2.0 }
   - { k: Mod de joaca, v: Auto-rotire, isi schimba singura directia }
   - { k: Potrivita pentru, v: Pisici mici, medii si mari }
-  - { k: Material, v: Silicon rezistent la muscaturi }
+  - { k: Material, v: Silicon moale, rezistent la muscaturi }
   - { k: Incarcare, v: USB-C (cablu inclus) }
   - { k: Culori disponibile, v: Roz, albastru, verde }
 ---
-Minge inteligenta care se rostogoleste si isi schimba directia singura, stimuland instinctul de vanatoare al pisicii. Ideala cand nu esti acasa - o tine activa, previne plictiseala si o incurajeaza sa se miste.
+**Știi privirea aceea** de câte ori pleci de acasă? Pisica rămasă singură, urmărindu-te de la ușă. Orele lungi în care nu are cu ce să se joace se transformă în plictiseală, neliniște și, uneori, în canapeaua zgâriată.
 
-Corp din silicon texturat, rezistent la muscaturi, potrivit pentru pisici de orice marime. Se reincarca rapid prin USB-C (cablu inclus) si porneste automat. O jucarie simpla care rezolva o problema reala: pisica plictisita care face dezordine prin casa.
+Nu pentru că e „rea" — ci pentru că se plictisește și îi lipsești.
+
+**Mingea PetGravity** se rostogolește și își schimbă singură direcția, trezind instinctul de vânător al pisicii tale. Aleargă după ea, o pândește, sare — exact ca atunci când te joci tu cu ea. Te întorci acasă la o pisică fericită și plăcut obosită, nu la dezordine.
+
+E din silicon moale, rezistent la mușcături, se reîncarcă prin USB-C și pornește automat la atingere. Un gest mic care îi dăruiește pisicii tale ore de bucurie — și ție, liniștea că, deși ești plecat, ea nu e singură.
+
+**Pentru că o pisică fericită înseamnă un stăpân împăcat.** 🐾
