@@ -57,6 +57,19 @@
   }
   </script>
   {% endif %}
+
+  {% if site.metaPixelId %}
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','{{ site.metaPixelId }}');
+  fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id={{ site.metaPixelId }}&ev=PageView&noscript=1"/></noscript>
+  {% if product %}
+  <script>window.__fbProduct__={id:{{ product.sku | dump | safe }},name:{{ product.name | dump | safe }},price:{{ product.price }},category:{{ product.category | dump | safe }}};</script>
+  {% endif %}
+  {% endif %}
 </head>
 <body>
   <header class="site-head">
@@ -131,5 +144,6 @@
   <div hidden id="snipcart" data-api-key="{{ site.snipcartApiKey }}" data-currency="{{ site.currency }}"></div>
   <script async src="https://cdn.snipcart.com/themes/v{{ site.snipcartVersion }}/default/snipcart.js"></script>
   <script src="/assets/js/theme.js" defer></script>
+  {% if site.metaPixelId %}<script src="/assets/js/pixel.js" defer></script>{% endif %}
 </body>
 </html>
