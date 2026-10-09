@@ -245,3 +245,15 @@ h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
   .emotion-inner { grid-template-columns: 1fr; gap: 24px; padding: 36px 20px; }
   .emotion-media { order: -1; }
 }
+
+/* ===== Banda livrare & plata (homepage) ===== */
+.infoband { margin: 0 auto 64px; }
+.section-head.center { justify-content: center; text-align: center; margin-bottom: 26px; }
+.info-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.info-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 24px; text-align: center; transition: transform 0.15s, box-shadow 0.15s; }
+.info-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+.info-card .ic { font-size: 2.4rem; display: block; margin-bottom: 12px; }
+.info-card h3 { font-family: var(--font); font-size: 1.12rem; margin: 0 0 8px; color: var(--ink); }
+.info-card p { color: var(--body); margin: 0; font-size: 0.98rem; line-height: 1.5; }
+.info-more { text-align: center; margin-top: 24px; }
+@media (max-width: 760px) { .info-cards { grid-template-columns: 1fr; } }
