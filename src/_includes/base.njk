@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/favicon.svg">
+  <meta name="theme-color" content="#2C5C97">
 
   <title>{% if title %}{{ title }} · {{ site.name }}{% else %}{{ site.name }} · {{ site.tagline }}{% endif %}</title>
   <meta name="description" content="{{ description or site.description }}">
@@ -75,7 +78,7 @@
   <header class="site-head">
     <div class="wrap head-row">
       <a class="brand" href="/">
-        <span class="brand-mark">◈</span>
+        <span class="brand-mark"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="currentColor"><ellipse cx="24" cy="31" rx="11" ry="8.5"/><ellipse cx="10.5" cy="21" rx="4.3" ry="5.8"/><ellipse cx="19.5" cy="13.5" rx="4.3" ry="6.2"/><ellipse cx="28.5" cy="13.5" rx="4.3" ry="6.2"/><ellipse cx="37.5" cy="21" rx="4.3" ry="5.8"/></g></svg></span>
         <span class="brand-name">{{ site.name }}</span>
       </a>
 
@@ -105,7 +108,7 @@
   <footer class="site-foot">
     <div class="wrap foot-grid">
       <div>
-        <div class="brand foot-brand"><span class="brand-mark">◈</span> {{ site.name }}</div>
+        <div class="brand foot-brand"><span class="brand-mark"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="currentColor"><ellipse cx="24" cy="31" rx="11" ry="8.5"/><ellipse cx="10.5" cy="21" rx="4.3" ry="5.8"/><ellipse cx="19.5" cy="13.5" rx="4.3" ry="6.2"/><ellipse cx="28.5" cy="13.5" rx="4.3" ry="6.2"/><ellipse cx="37.5" cy="21" rx="4.3" ry="5.8"/></g></svg></span> {{ site.name }}</div>
         <p class="muted">{{ site.tagline }}</p>
         <p class="muted small">{{ site.company.legalName }} · CUI {{ site.company.cui }} · {{ site.company.reg }}</p>
       </div>
