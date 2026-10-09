@@ -10,16 +10,17 @@ layout: base.njk
   </nav>
 
   <div class="product-grid">
-    <div class="product-media">
+    <div class="product-media" data-gallery>
       {% if product.image %}
-      <img src="{{ product.image }}" alt="{{ product.name }}" loading="eager">
+      <img class="main-img" src="{{ product.image }}" alt="{{ product.name }}" loading="eager">
       {% else %}
       <div class="ph-img" aria-hidden="true">Fara imagine</div>
       {% endif %}
       {% if product.gallery %}
       <div class="thumbs">
+        <img class="thumb is-active" src="{{ product.image }}" alt="{{ product.name }}" width="160" height="160" loading="lazy">
         {% for g in product.gallery %}
-        <img src="{{ g }}" alt="{{ product.name }}" width="160" height="160" loading="lazy">
+        <img class="thumb" src="{{ g }}" alt="{{ product.name }}" width="160" height="160" loading="lazy">
         {% endfor %}
       </div>
       {% endif %}
