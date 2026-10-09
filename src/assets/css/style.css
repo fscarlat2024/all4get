@@ -193,3 +193,42 @@ h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
   .hero-badges { grid-template-columns: 1fr; }
   .foot-grid { grid-template-columns: 1fr; }
 }
+
+/* ===== Snipcart - tema brand All4Get ===== */
+#snipcart {
+  --font-family: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --color-link: #2C5C97;
+  --color-icon: #2C5C97;
+  --color-buttonPrimary: #ffffff;
+  --bgColor-buttonPrimary: #2C5C97;
+  --borderColor-buttonPrimary: #2C5C97;
+  --color-buttonPrimary-hover: #ffffff;
+  --bgColor-buttonPrimary-hover: #3E7CC0;
+  --borderColor-buttonPrimary-hover: #3E7CC0;
+  --color-buttonPrimary-active: #ffffff;
+  --bgColor-buttonPrimary-active: #234b7e;
+  --borderColor-buttonPrimary-active: #234b7e;
+  --bgColor-alt: #eef2f7;
+  --borderColor-default: #dbe3ee;
+  font-family: "Figtree", system-ui, sans-serif;
+}
+/* fallback direct pe clase (sigur) */
+#snipcart .snipcart-button-primary,
+#snipcart .snipcart__box--badge-highlight,
+#snipcart .snipcart-payment__button {
+  background-color: #2C5C97 !important;
+  border-color: #2C5C97 !important;
+  color: #fff !important;
+}
+#snipcart .snipcart-button-primary:hover,
+#snipcart .snipcart-payment__button:hover {
+  background-color: #3E7CC0 !important;
+  border-color: #3E7CC0 !important;
+}
+#snipcart a,
+#snipcart .snipcart__font-color--accent,
+#snipcart .snipcart-item-line__action {
+  color: #2C5C97 !important;
+}
+#snipcart .snipcart-modal__header-title,
+#snipcart .snipcart-cart-header__title { font-family: "Fraunces", Georgia, serif; }
