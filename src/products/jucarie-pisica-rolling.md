@@ -10,11 +10,14 @@ short: Pisica ta merita mai mult decat o zi plictisitoare acasa. Mingea intelige
 image: /assets/img/products/pisica-ball-hero.jpg
 brand: PetGravity
 gallery:
-  - /assets/img/products/pisica-ball-colors.jpg
+  - /assets/img/products/mige-rolling.jpg
   - /assets/img/products/pisica-ball-life.jpg
-  - /assets/img/products/pisica-ball-life2.jpg
-  - /assets/img/products/pisica-ball-play.jpg
+  - /assets/img/products/mige-kitten.jpg
   - /assets/img/products/pisica-ball-box.jpg
+  - /assets/img/products/pisica-ball-colors.jpg
+  - /assets/img/products/mige-ball-cat.jpg
+  - /assets/img/products/mige-grounds.jpg
+  - /assets/img/products/pisica-ball-life2.jpg
 specs:
   - { k: Model, v: PetGravity Smart Rotating Ball 2.0 }
   - { k: Mod de joaca, v: Auto-rotire, isi schimba singura directia }
