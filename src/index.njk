@@ -17,6 +17,18 @@ layout: base.njk
   </div>
 </section>
 
+<section class="wrap products-home">
+  <div class="section-head center">
+    <h2>Produsele noastre</h2>
+    <p class="muted">Jucării testate care îți țin pisica fericită și activă</p>
+  </div>
+  <div class="product-cards">
+    {% for p in collections.products %}
+    {% include "card.njk" %}
+    {% endfor %}
+  </div>
+</section>
+
 <section class="wrap infoband">
   <div class="section-head center"><h2>Livrare și plată simplă</h2></div>
   <div class="info-cards">
@@ -27,8 +39,8 @@ layout: base.njk
     </div>
     <div class="info-card">
       <span class="ic">💵</span>
-      <h3>Plată ramburs sau card</h3>
-      <p>Plătești la livrare (cash sau card la curier) ori online cu cardul — cum preferi.</p>
+      <h3>Plată la livrare (ramburs)</h3>
+      <p>Plătești când primești coletul — cash sau card la curier. Fără plată online.</p>
     </div>
     <div class="info-card">
       <span class="ic">↩️</span>

@@ -40,21 +40,67 @@ layout: base.njk
         {% if product.stock > 0 %}✔ In stoc ({{ product.stock }} buc.){% else %}✖ Stoc epuizat{% endif %}
       </p>
 
-      <button
-        class="btn btn-buy snipcart-add-item"
-        {% if product.stock <= 0 %}disabled{% endif %}
-        data-item-id="{{ product.sku }}"
-        data-item-price="{{ product.price }}"
-        data-item-url="{{ page.url }}"
-        data-item-name="{{ product.name }}"
-        data-item-description="{{ product.short }}"
-        data-item-image="{{ product.image }}"
-        data-item-max-quantity="{{ product.stock }}"
-        data-item-categories="{{ product.category }}">
-        Adauga in cos
-      </button>
+      {% if product.colors %}
+      <div class="opt-row">
+        <label class="opt-label" for="color-picker">Alege culoarea</label>
+        <select id="color-picker" class="opt-select">
+          {% for c in product.colors %}<option value="{{ c }}">{{ c }}</option>{% endfor %}
+        </select>
+      </div>
+      {% endif %}
 
-      <p class="pay-note">💵 Plătești <strong>ramburs la livrare</strong> (cash sau card la curier) sau online cu cardul</p>
+      {% if product.bundle2Price and product.stock > 1 %}
+      <div class="bundle-offer">
+        <span class="bundle-badge">🎁 Ofertă</span>
+        <span class="bundle-text">Ia <strong>2 bucăți</strong> și plătești doar <strong>{{ product.bundle2Price | lei }}</strong> — economisești <strong>{{ product.bundle2Save }} lei</strong>. Perfect și ca al doilea cadou 🐾</span>
+      </div>
+      {% endif %}
+
+      <div class="buy-actions">
+        <button
+          class="btn btn-buy snipcart-add-item"
+          {% if product.stock <= 0 %}disabled{% endif %}
+          data-item-id="{{ product.sku }}"
+          data-item-price="{{ product.price }}"
+          data-item-url="{{ page.url }}"
+          data-item-name="{{ product.name }}"
+          data-item-description="{{ product.short }}"
+          data-item-image="{{ product.image }}"
+          data-item-max-quantity="{{ product.stock }}"
+          data-item-categories="{{ product.category }}"
+          {% if product.colors %}data-item-custom1-name="Culoare" data-item-custom1-options="{{ product.colors | join('|') }}" data-item-custom1-value="{{ product.colors[0] }}"{% endif %}>
+          Adauga in cos
+        </button>
+
+        {% if product.bundle2Price and product.stock > 1 %}
+        <button
+          class="btn btn-bundle snipcart-add-item"
+          data-item-id="{{ product.sku }}"
+          data-item-price="{{ product.price }}"
+          data-item-url="{{ page.url }}"
+          data-item-name="{{ product.name }}"
+          data-item-description="{{ product.short }}"
+          data-item-image="{{ product.image }}"
+          data-item-max-quantity="{{ product.stock }}"
+          data-item-quantity="2"
+          data-item-categories="{{ product.category }}"
+          {% if product.colors %}data-item-custom1-name="Culoare" data-item-custom1-options="{{ product.colors | join('|') }}" data-item-custom1-value="{{ product.colors[0] }}"{% endif %}>
+          Adaugă 2 — {{ product.bundle2Price | lei }}
+        </button>
+        {% endif %}
+      </div>
+
+      {% if product.colors %}
+      <script>
+      (function(){
+        var sel=document.getElementById('color-picker');
+        var btns=document.querySelectorAll('.product-info .snipcart-add-item');
+        if(sel&&btns.length){sel.addEventListener('change',function(){btns.forEach(function(b){b.setAttribute('data-item-custom1-value',sel.value);});});}
+      })();
+      </script>
+      {% endif %}
+
+      <p class="pay-note">💵 Plătești <strong>ramburs la livrare</strong> — cash sau card la curier. Fără plată online.</p>
 
       <ul class="perks">
         <li>Livrare {{ site.shipping.deliveryTime }}</li>
@@ -77,4 +123,33 @@ layout: base.njk
     </table>
     {% endif %}
   </section>
+
+  <div class="xsell-pop" id="xsellPop" hidden aria-hidden="true" data-current-sku="{{ product.sku }}">
+    <div class="xsell-card" role="dialog" aria-label="Recomandare">
+      <button class="xsell-close" type="button" aria-label="Închide">×</button>
+      <p class="xsell-head">🐾 Adăugat în coș! Îți mai trebuie?</p>
+      {% for p in collections.products %}{% if p.data.sku != product.sku %}
+      <div class="xsell-item">
+        <img src="{{ p.data.image }}" alt="{{ p.data.name }}" width="64" height="64" loading="lazy">
+        <div class="xsell-meta">
+          <span class="xsell-name">{{ p.data.name }}</span>
+          <span class="xsell-price">{{ p.data.price | lei }}</span>
+        </div>
+        <button
+          class="btn btn-xsell snipcart-add-item"
+          data-item-id="{{ p.data.sku }}"
+          data-item-price="{{ p.data.price }}"
+          data-item-url="{{ p.url }}"
+          data-item-name="{{ p.data.name }}"
+          data-item-description="{{ p.data.short }}"
+          data-item-image="{{ p.data.image }}"
+          data-item-max-quantity="{{ p.data.stock }}"
+          data-item-categories="{{ p.data.category }}"
+          {% if p.data.colors %}data-item-custom1-name="Culoare" data-item-custom1-options="{{ p.data.colors | join('|') }}" data-item-custom1-value="{{ p.data.colors[0] }}"{% endif %}>
+          Adaugă
+        </button>
+      </div>
+      {% endif %}{% endfor %}
+    </div>
+  </div>
 </article>

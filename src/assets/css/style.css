@@ -153,6 +153,10 @@ h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
 .stock { font-weight: 600; margin: 8px 0; }
 .stock.in { color: var(--ok); }
 .stock.out { color: var(--sale); }
+.opt-row { display: flex; align-items: center; gap: 12px; margin: 14px 0 16px; }
+.opt-label { font-weight: 600; color: var(--ink); }
+.opt-select { flex: 1; max-width: 220px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); font: inherit; font-size: 0.98rem; cursor: pointer; }
+.opt-select:focus { outline: 2px solid var(--brand2); outline-offset: 1px; }
 .pay-note { background: color-mix(in srgb, var(--ok) 12%, var(--bg)); border: 1px solid color-mix(in srgb, var(--ok) 35%, var(--line)); color: var(--ink); border-radius: 10px; padding: 12px 14px; margin: 4px 0 0; font-size: 0.95rem; }
 .perks { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 8px; }
 .perks li { padding-left: 24px; position: relative; color: var(--body); }
@@ -249,6 +253,8 @@ h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
 /* ===== Banda livrare & plata (homepage) ===== */
 .infoband { margin: 0 auto 64px; }
 .section-head.center { justify-content: center; text-align: center; margin-bottom: 26px; }
+.products-home { margin: 48px auto; }
+.products-home .section-head { margin-bottom: 24px; }
 .info-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .info-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 24px; text-align: center; transition: transform 0.15s, box-shadow 0.15s; }
 .info-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
@@ -267,3 +273,29 @@ h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
 .brand-mark { display: inline-flex; align-items: center; color: var(--brand2); }
 .brand-mark svg { width: 1.35em; height: 1.35em; display: block; }
 .foot-brand .brand-mark svg { width: 1.2em; height: 1.2em; }
+
+/* ===== Oferta 2 bucati + buton bundle ===== */
+[hidden] { display: none !important; }
+.bundle-offer { display: flex; align-items: center; gap: 12px; background: rgba(231,182,75,0.12); border: 1px solid rgba(231,182,75,0.55); border-radius: 12px; padding: 12px 14px; margin: 14px 0 6px; }
+.bundle-badge { flex: none; background: #E7B64B; color: #3a2a00; font-weight: 800; font-size: 0.8rem; padding: 5px 10px; border-radius: 999px; white-space: nowrap; }
+.bundle-text { color: var(--ink); font-size: 0.96rem; line-height: 1.45; }
+.buy-actions { display: flex; flex-direction: column; gap: 10px; margin: 10px 0; }
+.buy-actions .btn-buy { margin: 0; }
+.btn-bundle { width: 100%; padding: 14px; font-size: 1.02rem; font-weight: 700; background: transparent; color: var(--brand); border: 2px solid var(--brand); }
+.btn-bundle:hover { background: var(--brand); color: #fff; }
+
+/* ===== Cross-sell popup ===== */
+.xsell-pop { position: fixed; right: 16px; bottom: 16px; z-index: 9999; width: 340px; max-width: calc(100vw - 24px); }
+.xsell-card { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 14px 40px rgba(14,23,38,0.22); padding: 16px 16px 14px; animation: xsellIn 0.25s ease; }
+@keyframes xsellIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.xsell-close { position: absolute; top: 8px; right: 10px; background: transparent; border: none; font-size: 1.4rem; line-height: 1; color: var(--muted); cursor: pointer; padding: 2px 6px; }
+.xsell-close:hover { color: var(--ink); }
+.xsell-head { font-weight: 700; color: var(--ink); margin: 0 18px 10px 0; font-size: 0.98rem; }
+.xsell-item { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
+.xsell-item img { width: 56px; height: 56px; border-radius: 10px; object-fit: cover; border: 1px solid var(--line); flex: none; }
+.xsell-meta { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.xsell-name { font-size: 0.9rem; font-weight: 600; color: var(--ink); overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.xsell-price { color: var(--brand2); font-weight: 800; font-size: 0.95rem; }
+.btn-xsell { flex: none; background: var(--brand); color: #fff; padding: 9px 16px; font-size: 0.92rem; font-weight: 700; }
+.btn-xsell:hover { background: var(--brand2); }
+@media (max-width: 480px) { .xsell-pop { right: 12px; left: 12px; bottom: 12px; width: auto; } }

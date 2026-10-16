@@ -4,11 +4,16 @@ sku: PET-CAT-001
 category: Animale de companie
 price: 39.99
 oldPrice: 69.99
+bundle2Price: 59.98
+bundle2Save: 20
 stock: 50
 order: 0
 short: Pisica ta merita mai mult decat o zi plictisitoare acasa. Mingea inteligenta care o tine fericita si activa cat esti plecat.
 image: /assets/img/products/pisica-ball-hero.jpg
 brand: PetGravity
+colors:
+  - Verde mentă
+  - Roz
 gallery:
   - /assets/img/products/mige-rolling.jpg
   - /assets/img/products/pisica-ball-life.jpg
@@ -24,7 +29,7 @@ specs:
   - { k: Potrivita pentru, v: Pisici mici, medii si mari }
   - { k: Material, v: Silicon moale, rezistent la muscaturi }
   - { k: Incarcare, v: USB-C (cablu inclus) }
-  - { k: Culori disponibile, v: Roz, albastru, verde }
+  - { k: Culori disponibile, v: "Verde menta, Roz" }
 ---
 **Știi privirea aceea** de câte ori pleci de acasă? Pisica rămasă singură, urmărindu-te de la ușă. Orele lungi în care nu are cu ce să se joace se transformă în plictiseală, neliniște și, uneori, în canapeaua zgâriată.
 
