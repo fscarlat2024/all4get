@@ -100,7 +100,13 @@ layout: base.njk
       </script>
       {% endif %}
 
-      <p class="pay-note">💵 Plătești <strong>ramburs la livrare</strong> — cash sau card la curier. Fără plată online.</p>
+      <div class="guarantee">
+        <span class="g-ic">🛡️</span>
+        <div class="g-body">
+          <strong>Comanzi fără nicio grijă</strong>
+          <p>Plătești <strong>cash la curier</strong>, când primești coletul — fără plată online, fără cont. Nu-ți place? <strong>Retur gratuit în 14 zile.</strong></p>
+        </div>
+      </div>
 
       <ul class="perks">
         <li>Livrare {{ site.shipping.deliveryTime }}</li>
@@ -123,6 +129,22 @@ layout: base.njk
     </table>
     {% endif %}
   </section>
+
+  {% set hasOther = false %}
+  {% for p in collections.products %}{% if p.data.sku != product.sku %}{% set hasOther = true %}{% endif %}{% endfor %}
+  {% if hasOther %}
+  <section class="wrap bought-together">
+    <div class="section-head center">
+      <h2>Se cumpără des împreună</h2>
+      <p class="muted">Completează cadoul — pisica ta merită amândouă 🐾</p>
+    </div>
+    <div class="product-cards">
+      {% for p in collections.products %}{% if p.data.sku != product.sku %}
+      {% include "card.njk" %}
+      {% endif %}{% endfor %}
+    </div>
+  </section>
+  {% endif %}
 
   <div class="xsell-pop" id="xsellPop" hidden aria-hidden="true" data-current-sku="{{ product.sku }}">
     <div class="xsell-card" role="dialog" aria-label="Recomandare">

@@ -299,3 +299,11 @@ h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
 .btn-xsell { flex: none; background: var(--brand); color: #fff; padding: 9px 16px; font-size: 0.92rem; font-weight: 700; }
 .btn-xsell:hover { background: var(--brand2); }
 @media (max-width: 480px) { .xsell-pop { right: 12px; left: 12px; bottom: 12px; width: auto; } }
+
+/* ===== Caseta garantie (fara griji) + Se cumpara des impreuna ===== */
+.guarantee { display: flex; gap: 12px; align-items: flex-start; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 6px 0 14px; }
+.guarantee .g-ic { font-size: 1.5rem; line-height: 1.2; flex: none; }
+.guarantee .g-body strong { color: var(--ink); }
+.guarantee .g-body p { margin: 3px 0 0; color: var(--body); font-size: 0.95rem; line-height: 1.5; }
+.bought-together { margin: 8px auto 56px; }
+.bought-together .product-cards { grid-template-columns: repeat(auto-fit, minmax(240px, 320px)); justify-content: center; }
