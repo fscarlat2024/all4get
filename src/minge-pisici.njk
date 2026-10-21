@@ -1,0 +1,118 @@
+---
+layout: landing.njk
+title: Minge interactivă pentru pisici
+description: Minge inteligentă auto-rotativă care îți ține pisica fericită și activă. Plată ramburs, livrare 24-48h, retur 14 zile.
+permalink: /minge-pisici/
+---
+{% set minge = null %}
+{% for p in collections.products %}{% if p.data.sku == 'PET-CAT-001' %}{% set minge = p %}{% endif %}{% endfor %}
+
+<section class="lp-hero wrap">
+  <p class="eyebrow">Pentru pisica ta 🐾</p>
+  <h1>O pisică fericită, chiar și când nu ești acasă</h1>
+  <p class="lede">Mingea inteligentă care se mișcă singură și îți ține pisica activă toată ziua. Plătești la livrare, retur în 14 zile.</p>
+</section>
+
+<section class="wrap lp-main">
+  <div class="product-grid">
+    <div class="product-media" data-gallery>
+      <img class="main-img" src="{{ minge.data.image }}" alt="{{ minge.data.name }}" loading="eager">
+      {% if minge.data.gallery %}
+      <div class="thumbs">
+        <img class="thumb is-active" src="{{ minge.data.image }}" alt="{{ minge.data.name }}" width="160" height="160" loading="lazy">
+        {% for g in minge.data.gallery %}<img class="thumb" src="{{ g }}" alt="{{ minge.data.name }}" width="160" height="160" loading="lazy">{% endfor %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="product-info">
+      <p class="eyebrow">{{ minge.data.category }}</p>
+      <h2>{{ minge.data.name }}</h2>
+      <p class="lede">{{ minge.data.short }}</p>
+      <div class="price-row">
+        <span class="price">{{ minge.data.price | lei }}</span>
+        {% if minge.data.oldPrice %}<span class="price-old">{{ minge.data.oldPrice | lei }}</span>{% endif %}
+      </div>
+      <p class="stock {% if minge.data.stock > 0 %}in{% else %}out{% endif %}">{% if minge.data.stock > 0 %}✔ În stoc{% else %}✖ Stoc epuizat{% endif %}</p>
+
+      <div class="guarantee">
+        <span class="g-ic">🛡️</span>
+        <div class="g-body">
+          <strong>Comanzi fără nicio grijă</strong>
+          <p>Plătești <strong>cash la curier</strong>, când primești coletul — fără plată online, fără cont. Nu-ți place? <strong>Retur gratuit în 14 zile.</strong></p>
+        </div>
+      </div>
+
+      <form id="order-form" class="order-form"
+        data-endpoint="https://all4get-webhook.fscarlat.workers.dev/order"
+        data-main-sku="{{ minge.data.sku }}" data-main-unit="{{ minge.data.price }}" data-main-bundle="{{ minge.data.bundle2Price }}"
+        data-free-ship="300" data-flat-ship="19.99">
+
+        <h3 class="of-title">Comandă acum</h3>
+
+        <div class="of-field">
+          <label class="of-label">Cantitate</label>
+          <div class="of-qty">
+            <label class="qty-opt"><input type="radio" name="qty" value="1" checked> <span>1 bucată — <strong>{{ minge.data.price | lei }}</strong></span></label>
+            {% if minge.data.bundle2Price %}
+            <label class="qty-opt qty-deal"><input type="radio" name="qty" value="2"> <span>2 bucăți — <strong>{{ minge.data.bundle2Price | lei }}</strong> <em>economisești {{ minge.data.bundle2Save }} lei 🎁</em></span></label>
+            {% endif %}
+          </div>
+        </div>
+
+        {% if minge.data.colors %}
+        <div class="of-field">
+          <label class="of-label" for="minge-color">Culoare</label>
+          <select id="minge-color" name="mainColor" class="of-select">{% for c in minge.data.colors %}<option value="{{ c }}">{{ c }}</option>{% endfor %}</select>
+        </div>
+        {% endif %}
+
+        <div class="of-sep"><span>Date de livrare</span></div>
+
+        <div class="of-field"><input class="of-input" type="text" name="nume" placeholder="Nume și prenume *" autocomplete="name" required></div>
+        <div class="of-field"><input class="of-input" type="tel" name="telefon" placeholder="Telefon *" autocomplete="tel" required></div>
+        <div class="of-row2">
+          <input class="of-input" type="text" name="oras" placeholder="Oraș / Localitate *" autocomplete="address-level2" required>
+          <input class="of-input" type="text" name="judet" placeholder="Județ" autocomplete="address-level1">
+        </div>
+        <div class="of-field"><input class="of-input" type="text" name="adresa" placeholder="Adresa completă (stradă, nr., bloc, ap.) *" autocomplete="street-address" required></div>
+        <div class="of-field"><input class="of-input" type="email" name="email" placeholder="Email (opțional, pentru confirmare)" autocomplete="email"></div>
+
+        <input type="text" name="website" class="of-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="of-field">
+          <label class="of-label">Modalitate de plată</label>
+          <label class="pay-opt pay-active"><input type="radio" name="plata" value="ramburs" checked> <span>💵 <strong>Ramburs</strong> — plătești cash la curier când primești coletul</span></label>
+          <label class="pay-opt pay-soon"><input type="radio" name="plata" value="card" disabled> <span>💳 Card online <em>— disponibil în curând</em></span></label>
+        </div>
+
+        <div class="of-summary">
+          <div class="of-sumline"><span>Produse</span><span id="sum-sub">—</span></div>
+          <div class="of-sumline"><span>Transport</span><span id="sum-ship">—</span></div>
+          <div class="of-sumline of-total"><span>Total</span><span id="sum-total">—</span></div>
+        </div>
+
+        <button type="submit" class="btn btn-buy of-submit" {% if minge.data.stock <= 0 %}disabled{% endif %}>Trimite comanda</button>
+        <p class="of-note">Te sunăm pentru confirmare înainte de expediere. Transport gratuit peste 300 lei.</p>
+        <p class="of-error" id="of-error" hidden></p>
+      </form>
+
+      <ul class="perks">
+        <li>Livrare {{ site.shipping.deliveryTime }}</li>
+        <li>Retur gratuit în 14 zile</li>
+        <li>Plată ramburs la livrare</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="wrap of-thanks" id="of-thanks" hidden>
+  <div class="of-thanks-card">
+    <div class="of-thanks-ic">🎉</div>
+    <h2>Mulțumim! Comanda ta a fost înregistrată.</h2>
+    <p>Te sunăm în scurt timp la numărul lăsat, ca să confirmăm comanda înainte de expediere. Plătești cash la curier când primești coletul. 🐾</p>
+    <p class="of-thanks-id" id="of-thanks-id"></p>
+  </div>
+</section>
+
+<script src="/assets/js/order.js" defer></script>

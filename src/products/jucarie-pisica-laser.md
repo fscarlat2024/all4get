@@ -8,6 +8,7 @@ bundle2Price: 79.98
 bundle2Save: 20
 stock: 50
 order: 1
+buyUrl: /oferta/
 short: Un punctulet rosu care se misca imprevizibil si trezeste vanatorul din pisica ta. Se porneste singura la atingere - joaca chiar si cand nu esti acasa.
 image: /assets/img/products/laser-hero.jpg
 brand: PetPlay

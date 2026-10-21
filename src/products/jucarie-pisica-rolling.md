@@ -8,6 +8,7 @@ bundle2Price: 59.98
 bundle2Save: 20
 stock: 50
 order: 0
+buyUrl: /minge-pisici/
 short: Pisica ta merita mai mult decat o zi plictisitoare acasa. Mingea inteligenta care o tine fericita si activa cat esti plecat.
 image: /assets/img/products/pisica-ball-hero.jpg
 brand: PetGravity

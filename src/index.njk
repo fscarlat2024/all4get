@@ -12,7 +12,7 @@ layout: base.njk
       <p>Îți simte lipsa când pleci și te așteaptă la ușă. Nu înțelege de ce stă singură ore întregi — simte doar că nu ești acolo.</p>
       <p>O jucărie mică îi umple ziua cu bucurie și mișcare, chiar și când tu nu poți fi lângă ea. Iar seara te întâmpină o pisică fericită, nu una plictisită.</p>
       <p class="emotion-sign">Pentru că o pisică fericită înseamnă un stăpân împăcat. 🐾</p>
-      <a class="btn btn-primary" href="/produs/jucarie-pisica-rolling/">Fă-i ziua mai frumoasă →</a>
+      <a class="btn btn-primary" href="/minge-pisici/">Fă-i ziua mai frumoasă →</a>
     </div>
   </div>
 </section>
@@ -20,12 +20,23 @@ layout: base.njk
 <section class="wrap products-home">
   <div class="section-head center">
     <h2>Produsele noastre</h2>
-    <p class="muted">Jucării testate care îți țin pisica fericită și activă</p>
+    <p class="muted">Produse testate, livrare rapidă și plată la livrare (ramburs)</p>
   </div>
   <div class="product-cards">
     {% for p in collections.products %}
     {% include "card.njk" %}
     {% endfor %}
+    <article class="card-prod">
+      <a class="card-media" href="/rucsac-bebe/">
+        <img src="/assets/img/products/rucsac-bebe/hero.jpg" alt="Rucsac multifuncțional de bebe cu pătuț pliabil" width="400" height="400" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="card-cat">Bebeluși</p>
+        <h3 class="card-title"><a href="/rucsac-bebe/">Rucsac multifuncțional de bebe cu pătuț pliabil</a></h3>
+        <div class="price-row"><span class="price">130,00 lei</span></div>
+        <a class="btn btn-buy-sm" href="/rucsac-bebe/">Comandă acum</a>
+      </div>
+    </article>
   </div>
 </section>
 
