@@ -375,3 +375,15 @@ h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
 /* lista caracteristici produs */
 .feat-list{list-style:none;padding:0;margin:14px 0 4px;display:grid;gap:8px}
 .feat-list li{font-size:.95rem;color:var(--body);line-height:1.45}
+
+/* ===== Slider mesaje emotionale (homepage) ===== */
+.emotion-slider{position:relative;margin:0 0 60px}
+.emotion-slider > .emotion{margin:0}
+.emotion-slider > .emotion:not(.is-active){display:none}
+.emotion-slider > .emotion.is-active{animation:emFade .5s ease}
+@keyframes emFade{from{opacity:0}to{opacity:1}}
+.emotion-dots{display:flex;justify-content:center;gap:10px;margin:18px 0 0}
+.em-dot{width:11px;height:11px;border-radius:50%;border:none;background:var(--line);cursor:pointer;padding:0;transition:background .2s,transform .2s}
+.em-dot:hover{background:var(--ice)}
+.em-dot.is-active{background:var(--brand);transform:scale(1.2)}
+@media (prefers-reduced-motion:reduce){.emotion-slider > .emotion.is-active{animation:none}}

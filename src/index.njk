@@ -1,19 +1,40 @@
 ---
 layout: base.njk
 ---
-<section class="emotion emotion--first">
-  <div class="wrap emotion-inner">
-    <div class="emotion-media">
-      <img src="/assets/img/products/pisica-ball-life.jpg" alt="Pisică fericită cu jucăria" loading="lazy">
+<section class="emotion-slider" id="emotionSlider">
+  <div class="emotion emotion--first is-active">
+    <div class="wrap emotion-inner">
+      <div class="emotion-media">
+        <img src="/assets/img/products/rucsac-bebe/hero.jpg" alt="Părinte cu bebeluș și rucsacul multifuncțional" loading="eager">
+      </div>
+      <div class="emotion-copy">
+        <p class="eyebrow">Pentru părinți și bebeluși · Livrare 24-48h</p>
+        <h1>Tot ce are nevoie bebe, într-un singur rucsac.</h1>
+        <p>Să ai grijă de un bebeluș înseamnă o mie de lucruri de cărat — scutece, biberoane, hăinuțe, o jucărie, un loc de somn.</p>
+        <p>Un singur rucsac le ține pe toate la locul lor și se deschide într-un pătuț, ca cel mic să aibă mereu patul lui, oriunde ați fi. Tu ești prezent lângă el, nu ocupat cu bagajele.</p>
+        <p class="emotion-sign">Pentru că un părinte liniștit înseamnă un bebeluș fericit. 🍼</p>
+        <a class="btn btn-primary" href="/rucsac-bebe/">Vezi rucsacul →</a>
+      </div>
     </div>
-    <div class="emotion-copy">
-      <p class="eyebrow">Pentru cei care își iubesc pisica · Livrare 24-48h</p>
-      <h1>Nu e „doar o pisică". E familia ta.</h1>
-      <p>Îți simte lipsa când pleci și te așteaptă la ușă. Nu înțelege de ce stă singură ore întregi — simte doar că nu ești acolo.</p>
-      <p>O jucărie mică îi umple ziua cu bucurie și mișcare, chiar și când tu nu poți fi lângă ea. Iar seara te întâmpină o pisică fericită, nu una plictisită.</p>
-      <p class="emotion-sign">Pentru că o pisică fericită înseamnă un stăpân împăcat. 🐾</p>
-      <a class="btn btn-primary" href="/minge-pisici/">Fă-i ziua mai frumoasă →</a>
+  </div>
+  <div class="emotion emotion--first">
+    <div class="wrap emotion-inner">
+      <div class="emotion-media">
+        <img src="/assets/img/products/pisica-ball-life.jpg" alt="Pisică fericită cu jucăria" loading="lazy">
+      </div>
+      <div class="emotion-copy">
+        <p class="eyebrow">Pentru cei care își iubesc pisica · Livrare 24-48h</p>
+        <h1>Nu e „doar o pisică". E familia ta.</h1>
+        <p>Îți simte lipsa când pleci și te așteaptă la ușă. Nu înțelege de ce stă singură ore întregi — simte doar că nu ești acolo.</p>
+        <p>O jucărie mică îi umple ziua cu bucurie și mișcare, chiar și când tu nu poți fi lângă ea. Iar seara te întâmpină o pisică fericită, nu una plictisită.</p>
+        <p class="emotion-sign">Pentru că o pisică fericită înseamnă un stăpân împăcat. 🐾</p>
+        <a class="btn btn-primary" href="/minge-pisici/">Fă-i ziua mai frumoasă →</a>
+      </div>
     </div>
+  </div>
+  <div class="emotion-dots" aria-label="Alege mesajul">
+    <button class="em-dot is-active" type="button" aria-label="Mesaj bebeluși"></button>
+    <button class="em-dot" type="button" aria-label="Mesaj pisici"></button>
   </div>
 </section>
 
@@ -61,3 +82,5 @@ layout: base.njk
   </div>
   <p class="info-more"><a class="link" href="/livrare/">Vezi toate detaliile despre livrare și plată →</a></p>
 </section>
+
+<script src="/assets/js/emotion-slider.js" defer></script>
