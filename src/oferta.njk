@@ -50,8 +50,8 @@ permalink: /oferta/
       <!-- ===== FORMULAR COMANDA ===== -->
       <form id="order-form" class="order-form"
         data-endpoint="https://all4get-webhook.fscarlat.workers.dev/order"
-        data-laser-sku="{{ laser.data.sku }}" data-laser-unit="{{ laser.data.price }}" data-laser-bundle="{{ laser.data.bundle2Price }}"
-        {% if minge %}data-minge-sku="{{ minge.data.sku }}" data-minge-unit="{{ minge.data.price }}"{% endif %}
+        data-main-sku="{{ laser.data.sku }}" data-main-unit="{{ laser.data.price }}" data-main-bundle="{{ laser.data.bundle2Price }}"
+        {% if minge %}data-upsell-sku="{{ minge.data.sku }}" data-upsell-unit="{{ minge.data.price }}"{% endif %}
         data-free-ship="300" data-flat-ship="19.99">
 
         <h3 class="of-title">Comandă acum</h3>
@@ -69,21 +69,21 @@ permalink: /oferta/
         {% if laser.data.colors %}
         <div class="of-field">
           <label class="of-label" for="laser-color">Culoare</label>
-          <select id="laser-color" name="laserColor" class="of-select">{% for c in laser.data.colors %}<option value="{{ c }}">{{ c }}</option>{% endfor %}</select>
+          <select id="laser-color" name="mainColor" class="of-select">{% for c in laser.data.colors %}<option value="{{ c }}">{{ c }}</option>{% endfor %}</select>
         </div>
         {% endif %}
 
         {% if minge %}
         <div class="of-upsell">
           <label class="of-upsell-head">
-            <input type="checkbox" id="add-minge" name="addMinge">
+            <input type="checkbox" id="add-upsell" name="addUpsell">
             <img src="{{ minge.data.image }}" alt="{{ minge.data.name }}" width="54" height="54">
             <span class="of-upsell-txt">➕ Adaugă și <strong>{{ minge.data.name }}</strong><br><em>încă {{ minge.data.price | lei }} — aceleași condiții</em></span>
           </label>
           {% if minge.data.colors %}
-          <div class="of-upsell-color" id="minge-color-wrap" hidden>
-            <label class="of-label" for="minge-color">Culoare minge</label>
-            <select id="minge-color" name="mingeColor" class="of-select">{% for c in minge.data.colors %}<option value="{{ c }}">{{ c }}</option>{% endfor %}</select>
+          <div class="of-upsell-color" id="upsell-color-wrap" hidden>
+            <label class="of-label" for="upsell-color">Culoare minge</label>
+            <select id="upsell-color" name="upsellColor" class="of-select">{% for c in minge.data.colors %}<option value="{{ c }}">{{ c }}</option>{% endfor %}</select>
           </div>
           {% endif %}
         </div>

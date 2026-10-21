@@ -1,11 +1,11 @@
-// All4Get - formular comanda /oferta/ (ramburs; card in curand)
+// All4Get - formular comanda reutilizabil (ramburs; card in curand)
 (function () {
   var form = document.getElementById("order-form");
   if (!form) return;
 
   var d = form.dataset;
-  var LASER = { sku: d.laserSku, unit: num(d.laserUnit), bundle: num(d.laserBundle) };
-  var MINGE = d.mingeSku ? { sku: d.mingeSku, unit: num(d.mingeUnit) } : null;
+  var MAIN = { sku: d.mainSku, unit: num(d.mainUnit), bundle: num(d.mainBundle) };
+  var UPSELL = d.upsellSku ? { sku: d.upsellSku, unit: num(d.upsellUnit) } : null;
   var FREE_SHIP = num(d.freeShip) || 300;
   var FLAT_SHIP = num(d.flatShip) || 19.99;
   var ENDPOINT = d.endpoint;
@@ -14,22 +14,22 @@
   var elShip = document.getElementById("sum-ship");
   var elTotal = document.getElementById("sum-total");
   var elErr = document.getElementById("of-error");
-  var mingeChk = document.getElementById("add-minge");
-  var mingeColorWrap = document.getElementById("minge-color-wrap");
+  var upChk = document.getElementById("add-upsell");
+  var upColorWrap = document.getElementById("upsell-color-wrap");
 
   function num(v) { var n = parseFloat(String(v || "").replace(",", ".")); return isFinite(n) ? n : 0; }
   function lei(v) { return (Number(v) || 0).toFixed(2).replace(".", ",") + " lei"; }
   function qty() { var r = form.querySelector('input[name="qty"]:checked'); return r ? parseInt(r.value, 10) : 1; }
 
-  function laserLine() {
+  function mainLine() {
     var q = qty();
-    if (q >= 2 && LASER.bundle) return LASER.bundle + (q - 2) * LASER.unit;
-    return LASER.unit * q;
+    if (q >= 2 && MAIN.bundle) return MAIN.bundle + (q - 2) * MAIN.unit;
+    return MAIN.unit * q;
   }
 
   function compute() {
-    var sub = laserLine();
-    if (MINGE && mingeChk && mingeChk.checked) sub += MINGE.unit;
+    var sub = mainLine();
+    if (UPSELL && upChk && upChk.checked) sub += UPSELL.unit;
     sub = Math.round(sub * 100) / 100;
     var ship = sub >= FREE_SHIP ? 0 : FLAT_SHIP;
     var total = Math.round((sub + ship) * 100) / 100;
@@ -40,7 +40,7 @@
   }
 
   form.addEventListener("change", function (e) {
-    if (e.target === mingeChk && mingeColorWrap) mingeColorWrap.hidden = !mingeChk.checked;
+    if (e.target === upChk && upColorWrap) upColorWrap.hidden = !upChk.checked;
     compute();
   });
   compute();
@@ -49,8 +49,8 @@
     e.preventDefault();
     if (elErr) elErr.hidden = true;
 
-    var items = [{ sku: LASER.sku, qty: qty(), color: val("laserColor") }];
-    if (MINGE && mingeChk && mingeChk.checked) items.push({ sku: MINGE.sku, qty: 1, color: val("mingeColor") });
+    var items = [{ sku: MAIN.sku, qty: qty(), color: val("mainColor") }];
+    if (UPSELL && upChk && upChk.checked) items.push({ sku: UPSELL.sku, qty: 1, color: val("upsellColor") });
 
     var payload = {
       items: items,
