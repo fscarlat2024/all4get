@@ -311,3 +311,21 @@ h1 { font-size: clamp(1.8rem, 4vw, 2.8rem); }
 .guarantee .g-body p { margin: 3px 0 0; color: var(--body); font-size: 0.95rem; line-height: 1.5; }
 .bought-together { margin: 8px auto 56px; }
 .bought-together .product-cards { grid-template-columns: repeat(auto-fit, minmax(240px, 320px)); justify-content: center; }
+
+/* ===== Landing page reclama (/oferta/) - focus, fara navigare ===== */
+.brand-static { cursor: default; }
+.is-landing .site-head { position: static; }
+.lp-hero { text-align: center; max-width: 760px; margin: 28px auto 8px; }
+.lp-hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.7rem, 4vw, 2.6rem); line-height: 1.12; margin: 6px 0 12px; color: var(--ink); }
+.lp-hero .lede { color: var(--body); font-size: 1.05rem; }
+.lp-main { margin: 20px auto 40px; }
+.lp-reco { margin: 8px auto 56px; }
+.lp-reco .product-cards { grid-template-columns: repeat(auto-fit, minmax(240px, 320px)); justify-content: center; }
+.card-media.lp-static { cursor: default; }
+.card-prod.lp-product .card-title { color: var(--ink); }
+.lp-foot { margin-top: 24px; }
+.lp-foot-row { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; justify-content: space-between; padding: 22px 20px; }
+.lp-legal { display: flex; gap: 16px; flex-wrap: wrap; }
+.lp-legal a { color: var(--muted); font-size: 0.9rem; }
+.lp-legal a:hover { color: var(--brand2); }
+@media (max-width: 680px) { .lp-foot-row { justify-content: center; text-align: center; } }

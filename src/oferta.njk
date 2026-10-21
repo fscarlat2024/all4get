@@ -1,0 +1,130 @@
+---
+layout: landing.njk
+title: Jucării care îți fac pisica fericită
+description: Jucărie laser rotativă 360 pentru pisici. Plată ramburs la livrare, livrare 24-48h, retur în 14 zile.
+permalink: /oferta/
+---
+<section class="lp-hero wrap">
+  <p class="eyebrow">Pentru pisica ta 🐾</p>
+  <h1>Fă-i pisicii cea mai bună zi</h1>
+  <p class="lede">Jucărie interactivă testată — se joacă singură și când tu nu ești acasă. Plătești la livrare, retur în 14 zile.</p>
+</section>
+
+{% for p in collections.products %}{% if p.data.sku == 'PET-CAT-002' %}
+<section class="wrap lp-main lp-product" data-sku="{{ p.data.sku }}">
+  <div class="product-grid">
+    <div class="product-media" data-gallery>
+      <img class="main-img" src="{{ p.data.image }}" alt="{{ p.data.name }}" loading="eager">
+      {% if p.data.gallery %}
+      <div class="thumbs">
+        <img class="thumb is-active" src="{{ p.data.image }}" alt="{{ p.data.name }}" width="160" height="160" loading="lazy">
+        {% for g in p.data.gallery %}<img class="thumb" src="{{ g }}" alt="{{ p.data.name }}" width="160" height="160" loading="lazy">{% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    <div class="product-info">
+      <p class="eyebrow">{{ p.data.category }}</p>
+      <h2>{{ p.data.name }}</h2>
+      <p class="lede">{{ p.data.short }}</p>
+      <div class="price-row">
+        <span class="price">{{ p.data.price | lei }}</span>
+        {% if p.data.oldPrice %}<span class="price-old">{{ p.data.oldPrice | lei }}</span>{% endif %}
+      </div>
+      <p class="stock {% if p.data.stock > 0 %}in{% else %}out{% endif %}">{% if p.data.stock > 0 %}✔ In stoc ({{ p.data.stock }} buc.){% else %}✖ Stoc epuizat{% endif %}</p>
+
+      {% if p.data.colors %}
+      <div class="opt-row">
+        <label class="opt-label" for="col-{{ p.data.sku }}">Alege culoarea</label>
+        <select id="col-{{ p.data.sku }}" class="opt-select">{% for c in p.data.colors %}<option value="{{ c }}">{{ c }}</option>{% endfor %}</select>
+      </div>
+      {% endif %}
+
+      {% if p.data.bundle2Price and p.data.stock > 1 %}
+      <div class="bundle-offer">
+        <span class="bundle-badge">🎁 Ofertă</span>
+        <span class="bundle-text">Ia <strong>2 bucăți</strong> și plătești doar <strong>{{ p.data.bundle2Price | lei }}</strong> — economisești <strong>{{ p.data.bundle2Save }} lei</strong>. Perfect și ca al doilea cadou 🐾</span>
+      </div>
+      {% endif %}
+
+      <div class="buy-actions">
+        <button class="btn btn-buy snipcart-add-item" {% if p.data.stock <= 0 %}disabled{% endif %}
+          data-item-id="{{ p.data.sku }}" data-item-price="{{ p.data.price }}" data-item-url="/oferta/"
+          data-item-name="{{ p.data.name }}" data-item-description="{{ p.data.short }}" data-item-image="{{ p.data.image }}"
+          data-item-max-quantity="{{ p.data.stock }}" data-item-categories="{{ p.data.category }}"
+          {% if p.data.colors %}data-item-custom1-name="Culoare" data-item-custom1-options="{{ p.data.colors | join('|') }}" data-item-custom1-value="{{ p.data.colors[0] }}"{% endif %}>Adauga in cos</button>
+        {% if p.data.bundle2Price and p.data.stock > 1 %}
+        <button class="btn btn-bundle snipcart-add-item"
+          data-item-id="{{ p.data.sku }}" data-item-price="{{ p.data.price }}" data-item-url="/oferta/"
+          data-item-name="{{ p.data.name }}" data-item-description="{{ p.data.short }}" data-item-image="{{ p.data.image }}"
+          data-item-max-quantity="{{ p.data.stock }}" data-item-quantity="2" data-item-categories="{{ p.data.category }}"
+          {% if p.data.colors %}data-item-custom1-name="Culoare" data-item-custom1-options="{{ p.data.colors | join('|') }}" data-item-custom1-value="{{ p.data.colors[0] }}"{% endif %}>Adaugă 2 — {{ p.data.bundle2Price | lei }}</button>
+        {% endif %}
+      </div>
+
+      <div class="guarantee">
+        <span class="g-ic">🛡️</span>
+        <div class="g-body">
+          <strong>Comanzi fără nicio grijă</strong>
+          <p>Plătești <strong>cash la curier</strong>, când primești coletul — fără plată online, fără cont. Nu-ți place? <strong>Retur gratuit în 14 zile.</strong></p>
+        </div>
+      </div>
+
+      <ul class="perks">
+        <li>Livrare {{ site.shipping.deliveryTime }}</li>
+        <li>Retur gratuit in 14 zile</li>
+        <li>Plată ramburs la livrare</li>
+      </ul>
+    </div>
+  </div>
+</section>
+{% endif %}{% endfor %}
+
+{% set hasOther = false %}
+{% for p in collections.products %}{% if p.data.sku != 'PET-CAT-002' %}{% set hasOther = true %}{% endif %}{% endfor %}
+{% if hasOther %}
+<section class="wrap lp-reco">
+  <div class="section-head center">
+    <h2>Recomandări pentru pisica ta</h2>
+    <p class="muted">Completează cu încă o jucărie — aceleași condiții: ramburs, retur 14 zile 🐾</p>
+  </div>
+  <div class="product-cards">
+    {% for p in collections.products %}{% if p.data.sku != 'PET-CAT-002' %}
+    <article class="card-prod lp-product" data-sku="{{ p.data.sku }}">
+      <div class="card-media lp-static">
+        {% if p.data.oldPrice %}<span class="tag-sale">Reducere</span>{% endif %}
+        <img src="{{ p.data.image }}" alt="{{ p.data.name }}" width="400" height="400" loading="lazy">
+      </div>
+      <div class="card-body">
+        <p class="card-cat">{{ p.data.category }}</p>
+        <h3 class="card-title">{{ p.data.name }}</h3>
+        <div class="price-row">
+          <span class="price">{{ p.data.price | lei }}</span>
+          {% if p.data.oldPrice %}<span class="price-old">{{ p.data.oldPrice | lei }}</span>{% endif %}
+        </div>
+        {% if p.data.colors %}
+        <div class="opt-row">
+          <select id="col-{{ p.data.sku }}" class="opt-select" aria-label="Alege culoarea">{% for c in p.data.colors %}<option value="{{ c }}">{{ c }}</option>{% endfor %}</select>
+        </div>
+        {% endif %}
+        {% if p.data.bundle2Price %}<p class="muted small">🎁 2 bucăți = {{ p.data.bundle2Price | lei }} (economisești {{ p.data.bundle2Save }} lei)</p>{% endif %}
+        <button class="btn btn-buy-sm snipcart-add-item" {% if p.data.stock <= 0 %}disabled{% endif %}
+          data-item-id="{{ p.data.sku }}" data-item-price="{{ p.data.price }}" data-item-url="/oferta/"
+          data-item-name="{{ p.data.name }}" data-item-description="{{ p.data.short }}" data-item-image="{{ p.data.image }}"
+          data-item-max-quantity="{{ p.data.stock }}" data-item-categories="{{ p.data.category }}"
+          {% if p.data.colors %}data-item-custom1-name="Culoare" data-item-custom1-options="{{ p.data.colors | join('|') }}" data-item-custom1-value="{{ p.data.colors[0] }}"{% endif %}>Adauga in cos</button>
+      </div>
+    </article>
+    {% endif %}{% endfor %}
+  </div>
+</section>
+{% endif %}
+
+<script>
+(function(){
+  document.querySelectorAll('.lp-product').forEach(function(block){
+    var sel = block.querySelector('.opt-select');
+    var btns = block.querySelectorAll('.snipcart-add-item');
+    if(sel && btns.length){ sel.addEventListener('change', function(){ btns.forEach(function(b){ b.setAttribute('data-item-custom1-value', sel.value); }); }); }
+  });
+})();
+</script>
