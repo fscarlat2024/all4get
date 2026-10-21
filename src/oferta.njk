@@ -4,62 +4,40 @@ title: Jucării care îți fac pisica fericită
 description: Jucărie laser rotativă 360 pentru pisici. Plată ramburs la livrare, livrare 24-48h, retur în 14 zile.
 permalink: /oferta/
 ---
+{% set laser = null %}
+{% set minge = null %}
+{% for p in collections.products %}
+  {% if p.data.sku == 'PET-CAT-002' %}{% set laser = p %}{% endif %}
+  {% if p.data.sku == 'PET-CAT-001' %}{% set minge = p %}{% endif %}
+{% endfor %}
+
 <section class="lp-hero wrap">
   <p class="eyebrow">Pentru pisica ta 🐾</p>
   <h1>Fă-i pisicii cea mai bună zi</h1>
   <p class="lede">Jucărie interactivă testată — se joacă singură și când tu nu ești acasă. Plătești la livrare, retur în 14 zile.</p>
 </section>
 
-{% for p in collections.products %}{% if p.data.sku == 'PET-CAT-002' %}
-<section class="wrap lp-main lp-product" data-sku="{{ p.data.sku }}">
+<section class="wrap lp-main">
   <div class="product-grid">
     <div class="product-media" data-gallery>
-      <img class="main-img" src="{{ p.data.image }}" alt="{{ p.data.name }}" loading="eager">
-      {% if p.data.gallery %}
+      <img class="main-img" src="{{ laser.data.image }}" alt="{{ laser.data.name }}" loading="eager">
+      {% if laser.data.gallery %}
       <div class="thumbs">
-        <img class="thumb is-active" src="{{ p.data.image }}" alt="{{ p.data.name }}" width="160" height="160" loading="lazy">
-        {% for g in p.data.gallery %}<img class="thumb" src="{{ g }}" alt="{{ p.data.name }}" width="160" height="160" loading="lazy">{% endfor %}
+        <img class="thumb is-active" src="{{ laser.data.image }}" alt="{{ laser.data.name }}" width="160" height="160" loading="lazy">
+        {% for g in laser.data.gallery %}<img class="thumb" src="{{ g }}" alt="{{ laser.data.name }}" width="160" height="160" loading="lazy">{% endfor %}
       </div>
       {% endif %}
     </div>
+
     <div class="product-info">
-      <p class="eyebrow">{{ p.data.category }}</p>
-      <h2>{{ p.data.name }}</h2>
-      <p class="lede">{{ p.data.short }}</p>
+      <p class="eyebrow">{{ laser.data.category }}</p>
+      <h2>{{ laser.data.name }}</h2>
+      <p class="lede">{{ laser.data.short }}</p>
       <div class="price-row">
-        <span class="price">{{ p.data.price | lei }}</span>
-        {% if p.data.oldPrice %}<span class="price-old">{{ p.data.oldPrice | lei }}</span>{% endif %}
+        <span class="price">{{ laser.data.price | lei }}</span>
+        {% if laser.data.oldPrice %}<span class="price-old">{{ laser.data.oldPrice | lei }}</span>{% endif %}
       </div>
-      <p class="stock {% if p.data.stock > 0 %}in{% else %}out{% endif %}">{% if p.data.stock > 0 %}✔ In stoc ({{ p.data.stock }} buc.){% else %}✖ Stoc epuizat{% endif %}</p>
-
-      {% if p.data.colors %}
-      <div class="opt-row">
-        <label class="opt-label" for="col-{{ p.data.sku }}">Alege culoarea</label>
-        <select id="col-{{ p.data.sku }}" class="opt-select">{% for c in p.data.colors %}<option value="{{ c }}">{{ c }}</option>{% endfor %}</select>
-      </div>
-      {% endif %}
-
-      {% if p.data.bundle2Price and p.data.stock > 1 %}
-      <div class="bundle-offer">
-        <span class="bundle-badge">🎁 Ofertă</span>
-        <span class="bundle-text">Ia <strong>2 bucăți</strong> și plătești doar <strong>{{ p.data.bundle2Price | lei }}</strong> — economisești <strong>{{ p.data.bundle2Save }} lei</strong>. Perfect și ca al doilea cadou 🐾</span>
-      </div>
-      {% endif %}
-
-      <div class="buy-actions">
-        <button class="btn btn-buy snipcart-add-item" {% if p.data.stock <= 0 %}disabled{% endif %}
-          data-item-id="{{ p.data.sku }}" data-item-price="{{ p.data.price }}" data-item-url="/oferta/"
-          data-item-name="{{ p.data.name }}" data-item-description="{{ p.data.short }}" data-item-image="{{ p.data.image }}"
-          data-item-max-quantity="{{ p.data.stock }}" data-item-categories="{{ p.data.category }}"
-          {% if p.data.colors %}data-item-custom1-name="Culoare" data-item-custom1-options="{{ p.data.colors | join('|') }}" data-item-custom1-value="{{ p.data.colors[0] }}"{% endif %}>Adauga in cos</button>
-        {% if p.data.bundle2Price and p.data.stock > 1 %}
-        <button class="btn btn-bundle snipcart-add-item"
-          data-item-id="{{ p.data.sku }}" data-item-price="{{ p.data.price }}" data-item-url="/oferta/"
-          data-item-name="{{ p.data.name }}" data-item-description="{{ p.data.short }}" data-item-image="{{ p.data.image }}"
-          data-item-max-quantity="{{ p.data.stock }}" data-item-quantity="2" data-item-categories="{{ p.data.category }}"
-          {% if p.data.colors %}data-item-custom1-name="Culoare" data-item-custom1-options="{{ p.data.colors | join('|') }}" data-item-custom1-value="{{ p.data.colors[0] }}"{% endif %}>Adaugă 2 — {{ p.data.bundle2Price | lei }}</button>
-        {% endif %}
-      </div>
+      <p class="stock {% if laser.data.stock > 0 %}in{% else %}out{% endif %}">{% if laser.data.stock > 0 %}✔ În stoc ({{ laser.data.stock }} buc.){% else %}✖ Stoc epuizat{% endif %}</p>
 
       <div class="guarantee">
         <span class="g-ic">🛡️</span>
@@ -69,62 +47,96 @@ permalink: /oferta/
         </div>
       </div>
 
+      <!-- ===== FORMULAR COMANDA ===== -->
+      <form id="order-form" class="order-form"
+        data-endpoint="https://all4get-webhook.fscarlat.workers.dev/order"
+        data-laser-sku="{{ laser.data.sku }}" data-laser-unit="{{ laser.data.price }}" data-laser-bundle="{{ laser.data.bundle2Price }}"
+        {% if minge %}data-minge-sku="{{ minge.data.sku }}" data-minge-unit="{{ minge.data.price }}"{% endif %}
+        data-free-ship="300" data-flat-ship="19.99">
+
+        <h3 class="of-title">Comandă acum</h3>
+
+        <div class="of-field">
+          <label class="of-label">Cantitate</label>
+          <div class="of-qty">
+            <label class="qty-opt"><input type="radio" name="qty" value="1" checked> <span>1 bucată — <strong>{{ laser.data.price | lei }}</strong></span></label>
+            {% if laser.data.bundle2Price %}
+            <label class="qty-opt qty-deal"><input type="radio" name="qty" value="2"> <span>2 bucăți — <strong>{{ laser.data.bundle2Price | lei }}</strong> <em>economisești {{ laser.data.bundle2Save }} lei 🎁</em></span></label>
+            {% endif %}
+          </div>
+        </div>
+
+        {% if laser.data.colors %}
+        <div class="of-field">
+          <label class="of-label" for="laser-color">Culoare</label>
+          <select id="laser-color" name="laserColor" class="of-select">{% for c in laser.data.colors %}<option value="{{ c }}">{{ c }}</option>{% endfor %}</select>
+        </div>
+        {% endif %}
+
+        {% if minge %}
+        <div class="of-upsell">
+          <label class="of-upsell-head">
+            <input type="checkbox" id="add-minge" name="addMinge">
+            <img src="{{ minge.data.image }}" alt="{{ minge.data.name }}" width="54" height="54">
+            <span class="of-upsell-txt">➕ Adaugă și <strong>{{ minge.data.name }}</strong><br><em>încă {{ minge.data.price | lei }} — aceleași condiții</em></span>
+          </label>
+          {% if minge.data.colors %}
+          <div class="of-upsell-color" id="minge-color-wrap" hidden>
+            <label class="of-label" for="minge-color">Culoare minge</label>
+            <select id="minge-color" name="mingeColor" class="of-select">{% for c in minge.data.colors %}<option value="{{ c }}">{{ c }}</option>{% endfor %}</select>
+          </div>
+          {% endif %}
+        </div>
+        {% endif %}
+
+        <div class="of-sep"><span>Date de livrare</span></div>
+
+        <div class="of-field"><input class="of-input" type="text" name="nume" placeholder="Nume și prenume *" autocomplete="name" required></div>
+        <div class="of-field"><input class="of-input" type="tel" name="telefon" placeholder="Telefon *" autocomplete="tel" required></div>
+        <div class="of-row2">
+          <input class="of-input" type="text" name="oras" placeholder="Oraș / Localitate *" autocomplete="address-level2" required>
+          <input class="of-input" type="text" name="judet" placeholder="Județ" autocomplete="address-level1">
+        </div>
+        <div class="of-field"><input class="of-input" type="text" name="adresa" placeholder="Adresa completă (stradă, nr., bloc, ap.) *" autocomplete="street-address" required></div>
+        <div class="of-field"><input class="of-input" type="email" name="email" placeholder="Email (opțional, pentru confirmare)" autocomplete="email"></div>
+
+        <!-- honeypot anti-bot -->
+        <input type="text" name="website" class="of-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="of-field">
+          <label class="of-label">Modalitate de plată</label>
+          <label class="pay-opt pay-active"><input type="radio" name="plata" value="ramburs" checked> <span>💵 <strong>Ramburs</strong> — plătești cash la curier când primești coletul</span></label>
+          <label class="pay-opt pay-soon"><input type="radio" name="plata" value="card" disabled> <span>💳 Card online <em>— disponibil în curând</em></span></label>
+        </div>
+
+        <div class="of-summary">
+          <div class="of-sumline"><span>Produse</span><span id="sum-sub">—</span></div>
+          <div class="of-sumline"><span>Transport</span><span id="sum-ship">—</span></div>
+          <div class="of-sumline of-total"><span>Total</span><span id="sum-total">—</span></div>
+        </div>
+
+        <button type="submit" class="btn btn-buy of-submit" {% if laser.data.stock <= 0 %}disabled{% endif %}>Trimite comanda</button>
+        <p class="of-note">Te sunăm pentru confirmare înainte de expediere. Transport gratuit peste 300 lei.</p>
+        <p class="of-error" id="of-error" hidden></p>
+      </form>
+
       <ul class="perks">
         <li>Livrare {{ site.shipping.deliveryTime }}</li>
-        <li>Retur gratuit in 14 zile</li>
+        <li>Retur gratuit în 14 zile</li>
         <li>Plată ramburs la livrare</li>
       </ul>
     </div>
   </div>
 </section>
-{% endif %}{% endfor %}
 
-{% set hasOther = false %}
-{% for p in collections.products %}{% if p.data.sku != 'PET-CAT-002' %}{% set hasOther = true %}{% endif %}{% endfor %}
-{% if hasOther %}
-<section class="wrap lp-reco">
-  <div class="section-head center">
-    <h2>Recomandări pentru pisica ta</h2>
-    <p class="muted">Completează cu încă o jucărie — aceleași condiții: ramburs, retur 14 zile 🐾</p>
-  </div>
-  <div class="product-cards">
-    {% for p in collections.products %}{% if p.data.sku != 'PET-CAT-002' %}
-    <article class="card-prod lp-product" data-sku="{{ p.data.sku }}">
-      <div class="card-media lp-static">
-        {% if p.data.oldPrice %}<span class="tag-sale">Reducere</span>{% endif %}
-        <img src="{{ p.data.image }}" alt="{{ p.data.name }}" width="400" height="400" loading="lazy">
-      </div>
-      <div class="card-body">
-        <p class="card-cat">{{ p.data.category }}</p>
-        <h3 class="card-title">{{ p.data.name }}</h3>
-        <div class="price-row">
-          <span class="price">{{ p.data.price | lei }}</span>
-          {% if p.data.oldPrice %}<span class="price-old">{{ p.data.oldPrice | lei }}</span>{% endif %}
-        </div>
-        {% if p.data.colors %}
-        <div class="opt-row">
-          <select id="col-{{ p.data.sku }}" class="opt-select" aria-label="Alege culoarea">{% for c in p.data.colors %}<option value="{{ c }}">{{ c }}</option>{% endfor %}</select>
-        </div>
-        {% endif %}
-        {% if p.data.bundle2Price %}<p class="muted small">🎁 2 bucăți = {{ p.data.bundle2Price | lei }} (economisești {{ p.data.bundle2Save }} lei)</p>{% endif %}
-        <button class="btn btn-buy-sm snipcart-add-item" {% if p.data.stock <= 0 %}disabled{% endif %}
-          data-item-id="{{ p.data.sku }}" data-item-price="{{ p.data.price }}" data-item-url="/oferta/"
-          data-item-name="{{ p.data.name }}" data-item-description="{{ p.data.short }}" data-item-image="{{ p.data.image }}"
-          data-item-max-quantity="{{ p.data.stock }}" data-item-categories="{{ p.data.category }}"
-          {% if p.data.colors %}data-item-custom1-name="Culoare" data-item-custom1-options="{{ p.data.colors | join('|') }}" data-item-custom1-value="{{ p.data.colors[0] }}"{% endif %}>Adauga in cos</button>
-      </div>
-    </article>
-    {% endif %}{% endfor %}
+<!-- Multumesc (ascuns pana la comanda) -->
+<section class="wrap of-thanks" id="of-thanks" hidden>
+  <div class="of-thanks-card">
+    <div class="of-thanks-ic">🎉</div>
+    <h2>Mulțumim! Comanda ta a fost înregistrată.</h2>
+    <p>Te sunăm în scurt timp la numărul lăsat, ca să confirmăm comanda înainte de expediere. Plătești cash la curier când primești coletul. 🐾</p>
+    <p class="of-thanks-id" id="of-thanks-id"></p>
   </div>
 </section>
-{% endif %}
 
-<script>
-(function(){
-  document.querySelectorAll('.lp-product').forEach(function(block){
-    var sel = block.querySelector('.opt-select');
-    var btns = block.querySelectorAll('.snipcart-add-item');
-    if(sel && btns.length){ sel.addEventListener('change', function(){ btns.forEach(function(b){ b.setAttribute('data-item-custom1-value', sel.value); }); }); }
-  });
-})();
-</script>
+<script src="/assets/js/order.js" defer></script>
