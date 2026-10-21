@@ -12,16 +12,16 @@
   "metaPixelId": "840469450851270",
 
   "email": "comenzi@all4get.ro",
-  "phone": "0740 000 000",
-  "phoneHref": "+40740000000",
+  "phone": "0753 071 442",
+  "phoneHref": "+40753071442",
 
   "company": {
-    "legalName": "All4Get SRL",
-    "cui": "RO00000000",
-    "reg": "J40/0000/2026",
-    "address": "Str. Exemplu nr. 1, Bucuresti, Romania",
-    "iban": "RO00 XXXX 0000 0000 0000 0000",
-    "bank": "Banca Exemplu"
+    "legalName": "Net Communications Systems SRL",
+    "cui": "RO34291656",
+    "reg": "J2015003729407",
+    "address": "Str. Samuil Vulcan nr. 12D, Bucuresti, sector 5",
+    "iban": "",
+    "bank": ""
   },
 
   "shipping": {
